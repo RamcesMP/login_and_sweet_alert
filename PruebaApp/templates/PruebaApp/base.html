@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta http-equiv="refresh" >
+    <!-- content="5" -->
+    
+
+    <link rel="stylesheet" href="{% static 'vendor\bootstrap\css\bootstrap.min.css' %}">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ 
+  </head>
+
+  <body>
+
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link disabled {% if request.path == '/' %}active{% endif %} " href="{% url 'home' %}">Inicio</a>
+                </li>
+              <li class="nav-item">
+                <a class="nav-link {% if request.path == '/proyectos/' %}active{% endif %} " href="{% url 'servicios' %}">Proyectos</a>
+              </li>
+              <li><a class="nav-link scrollto {% if request.path == '/servicios/' %}active{% endif %}" href="{% url 'servicios' %}">Servicios</a></li>
+            </ul>
+            <div class="col-md-offset-8">
+                <ul class="navbar-nav mr-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item active">
+                        <a class="nav-link"  href="#">Bienvenid@ {{user.username}} <span class="sr-only">(current)</span></a>
+                        </li>
+                    <a class="nav-link"  href="{% url 'logout' %}">cerrar sesion <span class="sr-only">(current)</span></a>
+                    
+                    {% else %}
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{% url 'login' %}">iniciar sesión <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{% url 'registro' %}">registro <span class="sr-only">(current)</span></a>
+                  </li>
+                    {% endif %}
+                    
+                 
+                  </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <br>
+      <br>
+      <br>
+ 
+    <div class="container">
+
+
+<div>
+  
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h1>Blog personal de<br> Ramces</h1>
+          <h2>Accusantium quam, aliquam ultricies eget tempor id, aliquam eget nibh et. Maecen aliquam, risus at semper. Proin iaculis purus consequat sem cure digni ssim. Donec porttitora entum.</h2>
+          <!-- <div><a href="#about" class="btn-get-started scrollto">Get Started</a></div> -->
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img">
+          <img src="{% static 'img/hero-img.png'%}" class="img-fluid" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <br><br>
+    <div class="container">
+        {% if messages %}
+          {% for mensaje in messages %}
+          <!-- <div class="alert alert-primary" role="alert">
+            {{mensaje}}
+          </div> -->
+            <script>
+              Swal.fire({
+                "title":"Felicitaciones",
+                "text":"{{mensaje}}",
+                "icon":"success"
+              })
+            </script>
+          {% endfor %}
+        {% endif %}
+    {% block content %}
+
+
+    {% endblock %}
+    </div>
+ 
+
+   
+</div>
+
+
+
+      {% if messages %}
+          {% for mensaje in messages %}
+          <!-- <div class="alert alert-primary" role="alert">
+            {{mensaje}}
+          </div> -->
+            <script>
+              Swal.fire({
+                "title":"Guardado Exitosamente",
+                "icon":"success"
+              })
+            </script>
+          {% endfor %}
+        {% endif %}
+
+      
+    </div>
+
+
+
+
+
+
+
+
+    
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <script>
+      Holder.addTheme('thumb', {
+        bg: '#55595c',
+        fg: '#eceeef',
+        text: 'Thumbnail'
+      });
+    </script>
+  </body>
+</html>
+

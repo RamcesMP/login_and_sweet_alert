@@ -1,0 +1,47 @@
+{% extends 'PruebaApp/base.html '%}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+    <h1>Servicio</h1>
+    <br>
+    <div class="col-md-12">
+
+
+        <div class="col-md-12">
+            {% if servicios %}
+            <div class="row">
+                {% for servicio in servicios %}
+                  <div class="col-md-4">
+                    <div class="card" style="width: 100%; margin: 10px 10px;">
+                        
+                        <div class="card-body" style="text-align:center">
+                            <h7 class="card-title"><strong>{{servicio.nombre}}</strong></h7><br><br>
+                            {% if servicio.imagen %}
+                            <img src="{{servicio.imagen.url}}" width="250" height="150" style="border-radius: 5px;"> <br><br>
+                          
+                            {% endif %} 
+                            <p class="card-text">{{servicio.contenido}}</p>
+                        </div>
+                    </div>
+                </div>  
+                {% endfor %}
+            </div>
+        </div>
+        <br>
+
+        {% if perms.Servicio.add_producto %}
+        <div class="col-md-4">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form | crispy}}
+                <br>
+                <input type="submit" class="btn btn-primary" value="Aceptar">
+                <a href="{% url 'servicios' %}"><input type="button" class="btn btn-secondary " value="Cancelar"></a>
+            </form>
+            {{mensaje}}
+        </div>
+        {% endif %}
+    </div>
+        <br>
+    {% endif %}
+{% endblock %}

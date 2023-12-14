@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'vendor\bootstrap\css\bootstrap.css' %}">
+    <title>Bienvenido</title>
+</head>
+<body>
+    {% load crispy_forms_tags %}
+    <br><br><br>
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-12 col-md-4 offset-md-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Ingresa tus datos</h2>
+                        <hr>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{form | crispy }}
+                            <br>
+                            <a href="{% url 'home' %}">ir al home</a> |
+                            <a href="{% url 'registro' %}"> registrar</a>
+                            <input type="submit" value="Aceptar" class="btn btn-primary float-right">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
